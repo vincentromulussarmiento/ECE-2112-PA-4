@@ -116,6 +116,7 @@ plt.show()
 ```
 
 Repository Updates: 
+
 September 17 - Created Repository
 
 September 17 - Initial README
