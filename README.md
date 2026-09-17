@@ -30,11 +30,13 @@ import matplotlib.pyplot as plt
 ```
 
 ## A. Visayas Communication Data Frame
+Before proceeding to the assignment, it is required to solve for the average in the data set because it wasn't included in the given table. To do this, the mean of the of the board exam scores of each student is computed.
+
 Create a Data Frame assigned under the variable VisComm. This particular Data Frame should contain the students that meets the following: resides in Visayas and took Communications as their track. After finding those students, only display their name, gender, exam scores in math and electronics, and the average of their exam scores.
 
 Functions(s), Method(s), and/or Operation(s) used:
 
-- .mean(axis=1) - 
+- .mean(axis=1) - This function calculates for the average of a set of elements that contains numbers.
 - .loc() - This function is used to locate certain elements of a Data Series or Frame. It has 2 parts, the rows and the columns. .loc means that it accepts row inputs not just by their index number, but also their exact value. Therefore, it is more versatile than the other locating function which is .iloc
 - == - This is the equality operator. It is used when you want to check if a variable is equal to something. When used in a condition, if the two aren't equal, it would result to false, which might lead to a particular condition to not be met.
 - & - This is the AND operator. This operator requires at least 2 propositions so that there is something to compare. These propositions have to be true so that it would be accepted by the operator. When applied as a condition, if there is even 1 false, the operator wouldn't store that data to a given variable.
@@ -64,18 +66,58 @@ VisFemale[['Name', 'Track', 'GEAS', 'Electronics', 'Average']]
 ```
 
 ## C. Category-Average Visualization
-task
+For the 3 main categories, namely, track, gender, and hometown, calculate the average of each feature under those categories and display the results of each categories separately. Lastly create one figure containing 3 bar charts that visualizes the average of each feature under the 3 categories, and write short statements that summarizes which feature had the highest average in each category.
 
 Functions(s), Method(s), and/or Operation(s) used:
 
-- dawdasd
+- .groupby - This function groups a particular Data Frame according to the input.
+- .mean  This function calculates the average of a set of elements that contains numbers. 
+- .reset_index - This function resets the indexes of selected elements back to the zero based row-column system as it was affected by the .groupby function.
+- plt.subplots(1, 3, figsize=(15, 9)) - This function creates 3 plots under only one plot. The first 2 inputs refers to the number of your first and last plot, these inputs are not zero-based. The figsize refers to the dimensions of your plot in the x and y-axis.
+- .plot - This function generates a graphical visualization.
+- .bar - This precedes the .plot function as it commands that said graphical visualization has to be a bar chart.
+- .text(0.5, -50, description, ha='center', fontsize=15) - This function prints a given variable that contains strings in a given subplot. The first 2 inputs refers to the specific position of your text in the x and y-axis. The third input is the variable name where your text is assigned to. "ha" refers to the more general positioning of your text. Lastly, from the word itself, fontsize is the size of the font of each character of your text.
 
 Below is the completed code: 
 ``` Python
+track_avg = eceboardexam2.groupby('Track')['Average'].mean().reset_index()
+gender_avg = eceboardexam2.groupby('Gender')['Average'].mean().reset_index()
+hometown_avg = eceboardexam2.groupby('Hometown')['Average'].mean().reset_index()
 
+fig, axes = plt.subplots(1, 3, figsize=(15, 9))
+track_avg.plot.bar(
+                    x = "Track",
+                    y = "Average",
+                    ax = axes[0],
+                    title = "Mean Average by Track"
+                    )
+gender_avg.plot.bar(
+                    x = "Gender",
+                    y = "Average",
+                    ax = axes[1],
+                    title = "Mean Average by Gender"
+                    )
+hometown_avg.plot.bar(
+                       x = "Hometown",
+                        y = "Average",
+                        ax = axes[2],
+                        title = "Mean Average by Hometown"
+                        )             
+
+description = (
+                "Highest mean per category:\n"
+                "Track: Communication\n Gender: Male\n Hometown: Luzon"
+                )
+
+axes[1].text(0.5, -50, description, ha='center', fontsize=15)
+
+plt.tight_layout()
+plt.show()
 ```
 
 Repository Updates: 
 September 17 - Created Repository
 
-September 17 - Finished the README, and uploaded the necessary files
+September 17 - Initial README
+
+September 18 - Finished the README, and uploaded the necessary files
