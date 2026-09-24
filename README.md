@@ -122,3 +122,5 @@ September 17 - Created Repository
 September 17 - Initial README
 
 September 18 - Finished the README, and uploaded the necessary files
+
+September 24 - Fixed a singular README mistake
