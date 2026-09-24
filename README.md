@@ -11,8 +11,8 @@ The Pandas library contains various functions that allows the creation and manip
 import pandas as pd
 ```
 
-## Reading CSV files 
-One of the functions of the Pandas library is the reading of CSV files. This type of file contains data encoded in a particular table (either a series or a frame) for easier distribution of data samples instead of people providing themselves their own tabular data. The function is written as:
+## Reading Excel files 
+One of the functions of the Pandas library is the reading of excel files. This type of file contains data encoded in a particular table (either a series or a frame) for easier distribution of data samples instead of people providing themselves their own tabular data. The function is written as:
 ``` Python
 _____ = pd.read_excel('_____')
 ```
